@@ -1,0 +1,9 @@
+OSCAR
+
+0. Create an empty bucket to use for testing
+1. Edit config.txt to reflect your environment
+2. Run configureS3.sh (if you change config.txt later, re-run this)
+3. Run runHadoopAwsTests.sh (ideally they'll PASS)
+4. Delete your bucket, e.g. aws s3 rb s3://oscar-test
+4. Run runBenchmark.sh
+

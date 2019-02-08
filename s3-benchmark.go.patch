@@ -1,0 +1,52 @@
+# Copyright 2018 Cloudera, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+--- s3-benchmark.go.original
++++ s3-benchmark.go
+@@ -16,7 +16,7 @@
+ 	"github.com/aws/aws-sdk-go/aws/credentials"
+ 	"github.com/aws/aws-sdk-go/aws/session"
+ 	"github.com/aws/aws-sdk-go/service/s3"
+-	"github.com/pivotal-golang/bytefmt"
++	"code.cloudfoundry.org/bytefmt"
+ 	"io"
+ 	"io/ioutil"
+ 	"log"
+@@ -193,7 +193,7 @@
+
+ func setSignature(req *http.Request) {
+ 	// Setup default parameters
+-	dateHdr := time.Now().UTC().Format("20060102T150405Z")
++	dateHdr := time.Now().UTC().Format(time.RFC1123)
+ 	req.Header.Set("X-Amz-Date", dateHdr)
+ 	// Get the canonical resource and header
+ 	canonicalResource := req.URL.EscapedPath()
+@@ -289,7 +289,7 @@
+ 	myflag := flag.NewFlagSet("myflag", flag.ExitOnError)
+ 	myflag.StringVar(&access_key, "a", "", "Access key")
+ 	myflag.StringVar(&secret_key, "s", "", "Secret key")
+-	myflag.StringVar(&url_host, "u", "http://s3.wasabisys.com", "URL for host with method prefix")
++	myflag.StringVar(&url_host, "u", "http://localhost", "URL for host with method prefix")
+ 	myflag.StringVar(&bucket, "b", "wasabi-benchmark-bucket", "Bucket for testing")
+ 	myflag.StringVar(&region, "r", "us-east-1", "Region for testing")
+ 	myflag.IntVar(&duration_secs, "d", 60, "Duration of each test in seconds")
+@@ -325,7 +325,7 @@
+ 	object_data_md5 = base64.StdEncoding.EncodeToString(hasher.Sum(nil))
+
+ 	// Create the bucket and delete all the objects
+-	createBucket(true)
++	createBucket(false)
+ 	deleteAllObjects()
+
+ 	// Loop running the tests

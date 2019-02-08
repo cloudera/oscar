@@ -1,0 +1,51 @@
+# Copyright 2018-2019 Cloudera, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# ACCESS KEYS. Used to make programmatic calls to the object store. Keep them secret.
+# Your object store administration should be able to provide these.
+
+ACCESS_KEY='CHANGEME'
+SECRET_KEY='CHANGEME'
+
+# BUCKET NAME. Name of the bucket you wish to use for testing, without s3a:// prefix.
+# Example: AWS_BUCKET='oscar-test'
+#
+# Notes:
+#   AWS: bucket paths are case sensitive, but URLs are not; recommend lowercase bucket name
+#   Ceph: use an uppercase bucket name
+
+AWS_BUCKET='CHANGEME'
+
+# ENDPOINT. Hostname used to connect to the object store. Do not include a protocol prefix.
+# Example: ENDPOINT='s3.amazonaws.com'
+#   (would connect to us-east-1 region)
+#
+# Notes:
+#   AWS: https://docs.aws.amazon.com/general/latest/gr/rande.html
+
+ENDPOINT='CHANGEME'
+
+# REGION
+#
+# Object store region.
+# Example: REGION='us-east-1'
+#   (would use the us-east-1 region)
+#
+# Notes:
+#   Ceph: use 'us-east-1' unless directed otherwise by your storage admin
+
+REGION='CHANGEME'
+
+# EOF
